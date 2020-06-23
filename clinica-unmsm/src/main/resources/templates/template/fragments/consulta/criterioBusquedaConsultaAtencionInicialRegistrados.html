@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<div id="criterioBusquedaConsulta" class="row" th:fragment="criterioBusquedaConsultaAtencionInicialRegistrados" th:with="tipo=${tipo}">
+		<fieldset class="well">
+			<legend class="well-legend">Búsqueda</legend>
+			<form id="formCriterioBusquedaConsulta" class="form-horizontal" role="form">
+				<th:block th:replace="~{template/fragments/consulta/criterioBusquedaConsultaAtencionInicialRegistrados :: ${tipo}}?:~{}">
+				</th:block>
+				<div class="form-group">
+					<div class="col-lg-12 text-center">
+						<button id="buscar" type="button" class="btn btn-primary">
+							<i class="fa fa-search"></i> Buscar
+						</button>
+						<button id="exportar" type="button" class="btn btn-success" title="Exportar en .XLSX" data-tooltip="tooltip">
+							<i class="fa fa-download"></i> Exportar
+						</button>
+					</div>
+				</div>
+			</form>
+		</fieldset>
+	</div>
+			<!-- 
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Campaña</label>
+				<div class="col-lg-3 col-md-3">
+					<select id="campanias" name="idCampania" class="form-control select2" disabled="true">
+						<option th:each="campania,iter : ${campanias}" th:value="${campania.idCampania}" th:selected="${iter.index == 0}"
+							th:text="|${campania.idCampania} - ${campania.descripcion}|"></option>
+					</select>
+				</div>
+			</div> -->
+	<th:block th:fragment="radiologia">
+		<div class="form-group">
+			<div class="group">
+				<label class="control-label col-lg-1">Turno</label>
+				<div class="col-lg-2">
+					<select id="tiposTurno" class="form-control select2 filtro" name="idTurno">
+						<option value="-1" selected="selected">Seleccione Turno</option>
+						<option th:each="tipoTurno : ${tiposTurno}"	th:value="${tipoTurno.idItem}"
+								th:text="|${tipoTurno.idItem} - ${tipoTurno.descripcionItem}|"></option>
+					</select>
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-2">Número de Registro</label>
+				<div class="col-lg-3">
+					<label class="col-lg-1 control-label">Del  </label>
+					<div class="col-lg-4">
+						<input class="form-control numbersOnly filtro" name="inicioNumRegistro">
+					</div>
+					<label class="col-lg-1 control-label">Al</label>
+					<div class="col-lg-4">
+						<input class="form-control col-lg-1 numbersOnly filtro" name="finNumRegistro">
+					</div>
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-1">Fecha Num. Reg.</label>
+				<div class="col-lg-3">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						<input id="rangoFechaBusqueda" type="text" class="form-control filtro" readonly="readonly" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Facultad</label>
+				<div class="col-lg-3 col-md-3">
+					<select id="facultades" name="codigoFacultad" class="form-control select2 filtro">
+						<option value="-1">TODAS</option>
+						<option th:each="facultad : ${facultades}" th:value="${facultad.codigoFacultad}"
+							th:text="|${facultad.codigoFacultad} - ${facultad.descripcion}|"></option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</th:block>
+
+	<th:block th:fragment="laboratorio">
+		<div class="form-group">
+			<div class="group">
+				<label class="control-label col-lg-1">Turno</label>
+				<div class="col-lg-2">
+					<select id="tiposTurno" class="form-control select2 filtro" name="idTurno">
+						<option value="-1" selected="selected">Seleccione Turno</option>
+						<option th:each="tipoTurno : ${tiposTurno}"	th:value="${tipoTurno.idItem}"
+								th:text="|${tipoTurno.idItem} - ${tipoTurno.descripcionItem}|"></option>
+					</select>
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-2">Número de Registro</label>
+				<div class="col-lg-3">
+					<label class="col-lg-1 control-label">Del  </label>
+					<div class="col-lg-4">
+						<input class="form-control numbersOnly filtro" name="inicioNumRegistro">
+					</div>
+					<label class="col-lg-1 control-label">Al</label>
+					<div class="col-lg-4">
+						<input class="form-control col-lg-1 numbersOnly filtro" name="finNumRegistro">
+					</div>
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-1">Fecha Num. Reg.</label>
+				<div class="col-lg-3">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						<input id="rangoFechaBusqueda" type="text" class="form-control filtro" readonly="readonly" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Facultad</label>
+				<div class="col-lg-3 col-md-3">
+					<select id="facultades" name="codigoFacultad" class="form-control select2 filtro">
+						<option value="-1">TODAS</option>
+						<option th:each="facultad : ${facultades}" th:value="${facultad.codigoFacultad}"
+							th:text="|${facultad.codigoFacultad} - ${facultad.descripcion}|"></option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</th:block>
+
+	<th:block th:fragment="triaje">
+		<div class="form-group">
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Código</label>
+				<div class="col-lg-3 col-md-3">
+					<input id="codigoAlumno" type="text" name="codigoAlumno" class="form-control" maxlength="8" autofocus="autofocus"
+						autocomplete="off" />
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Campaña</label>
+				<div class="col-lg-3 col-md-3">
+					<select id="campanias" name="idCampania" class="form-control select2" disabled="true">
+						<option th:each="campania,iter : ${campanias}" th:value="${campania.idCampania}" th:selected="${iter.index == 0}"
+							th:text="|${campania.idCampania} - ${campania.descripcion}|"></option>
+					</select>
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Facultad</label>
+				<div class="col-lg-3 col-md-3">
+					<select id="facultades" name="codigoFacultad" class="form-control select2">
+						<option value="-1">TODAS</option>
+						<option th:each="facultad : ${facultades}" th:value="${facultad.codigoFacultad}"
+							th:text="|${facultad.codigoFacultad} - ${facultad.descripcion}|"></option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</th:block>
+
+	<th:block th:fragment="odontologia">
+		<div class="form-group">
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Código</label>
+				<div class="col-lg-3 col-md-3">
+					<input id="codigoAlumno" type="text" name="codigoAlumno" class="form-control" maxlength="8" autofocus="autofocus"
+						autocomplete="off" />
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Campaña</label>
+				<div class="col-lg-3 col-md-3">
+					<select id="campanias" name="idCampania" class="form-control select2">
+						<option th:each="campania : ${campanias}" th:value="${campania.idCampania}" 
+							th:text="|${campania.idCampania} - ${campania.descripcion}|"></option>
+					</select>
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Facultad</label>
+				<div class="col-lg-3 col-md-3">
+					<select id="facultades" name="codigoFacultad" class="form-control select2">
+						<option value="-1">TODAS</option>
+						<option th:each="facultad : ${facultades}" th:value="${facultad.codigoFacultad}"
+							th:text="|${facultad.codigoFacultad} - ${facultad.descripcion}|"></option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</th:block>
+
+	<th:block th:fragment="psicologia">
+		<div class="form-group">
+			<div class="group">
+				<label class="control-label col-lg-1">Turno</label>
+				<div class="col-lg-2">
+					<select id="tiposTurno" class="form-control select2 filtro" name="idTurno">
+						<option value="-1" selected="selected">Seleccione Turno</option>
+						<option th:each="tipoTurno : ${tiposTurno}"	th:value="${tipoTurno.idItem}"
+								th:text="|${tipoTurno.idItem} - ${tipoTurno.descripcionItem}|"></option>
+					</select>
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-2">Número de Registro</label>
+				<div class="col-lg-3">
+					<label class="col-lg-1 control-label">Del  </label>
+					<div class="col-lg-4">
+						<input class="form-control numbersOnly filtro" name="inicioNumRegistro">
+					</div>
+					<label class="col-lg-1 control-label">Al</label>
+					<div class="col-lg-4">
+						<input class="form-control col-lg-1 numbersOnly filtro" name="finNumRegistro">
+					</div>
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-1">Fecha Num. Reg.</label>
+				<div class="col-lg-3">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						<input id="rangoFechaBusqueda" type="text" class="form-control filtro" readonly="readonly" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Facultad</label>
+				<div class="col-lg-3 col-md-3">
+					<select id="facultades" name="codigoFacultad" class="form-control select2 filtro">
+						<option value="-1">TODAS</option>
+						<option th:each="facultad : ${facultades}" th:value="${facultad.codigoFacultad}"
+							th:text="|${facultad.codigoFacultad} - ${facultad.descripcion}|"></option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</th:block>
+
+	<th:block th:fragment="digitador">
+		<div class="form-group">
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Código</label>
+				<div class="col-lg-3 col-md-3">
+					<input id="codigoAlumno" type="text" name="codigoAlumno" class="form-control" maxlength="8" autofocus="autofocus"
+						autocomplete="off" />
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Campaña</label>
+				<div class="col-lg-3 col-md-3">
+					<select id="campanias" name="idCampania" class="form-control select2">
+						<option th:each="campania,iter : ${campanias}" th:value="${campania.idCampania}" th:selected="${iter.index == 0}"
+							th:text="|${campania.idCampania} - ${campania.descripcion}|"
+							th:attr="data-id-tipo-certificado=${campania.idTipoCertificado},data-descripcion-tipo-certificado=${campania.descripcionTipoCertificado}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Facultad</label>
+				<div class="col-lg-3 col-md-3">
+					<select id="facultades" name="codigoFacultad" class="form-control select2">
+						<option value="-1">TODAS</option>
+						<option th:each="facultad : ${facultades}" th:value="${facultad.codigoFacultad}"
+							th:text="|${facultad.codigoFacultad} - ${facultad.descripcion}|"></option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</th:block>
+	
+	<th:block th:fragment="medicinaGeneral">
+		<div class="form-group">
+			<div class="group">
+				<label class="control-label col-lg-1">Turno</label>
+				<div class="col-lg-2">
+					<select id="tiposTurno" class="form-control select2 filtro" name="idTurno">
+						<option value="-1" selected="selected">Seleccione Turno</option>
+						<option th:each="tipoTurno : ${tiposTurno}"	th:value="${tipoTurno.idItem}"
+								th:text="|${tipoTurno.idItem} - ${tipoTurno.descripcionItem}|"></option>
+					</select>
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-2">Número de Registro</label>
+				<div class="col-lg-3">
+					<label class="col-lg-1 control-label">Del  </label>
+					<div class="col-lg-4">
+						<input class="form-control numbersOnly filtro" name="inicioNumRegistro">
+					</div>
+					<label class="col-lg-1 control-label">Al</label>
+					<div class="col-lg-4">
+						<input class="form-control col-lg-1 numbersOnly filtro" name="finNumRegistro">
+					</div>
+				</div>
+			</div>
+			<div class="group">
+				<label class="control-label col-lg-1">Fecha Num. Reg.</label>
+				<div class="col-lg-3">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						<input id="rangoFechaBusqueda" type="text" class="form-control filtro" readonly="readonly" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="group">
+				<label class="control-label col-lg-1 col-md-1">Facultad</label>
+				<div class="col-lg-3 col-md-3">
+					<select id="facultades" name="codigoFacultad" class="form-control select2 filtro">
+						<option value="-1">TODAS</option>
+						<option th:each="facultad : ${facultades}" th:value="${facultad.codigoFacultad}"
+							th:text="|${facultad.codigoFacultad} - ${facultad.descripcion}|"></option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>

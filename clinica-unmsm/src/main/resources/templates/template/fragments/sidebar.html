@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="es" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+	</head>
+	<body>
+		<!--  
+		<div class="page-sidebar">
+			<ul class="x-navigation">
+				<li id="tituloClinica" class="xn-logo">
+					<a>Clínica Universitaria</a> 
+					<a href="#" class="x-navigation-control"></a>
+				</li>
+				<li id="imagen" class="xn-profile">
+					<a class="profile-mini">
+						<img th:src="@{/image/logo_login.png}">
+					</a>
+					<div class="profile">
+						<img th:src="@{/image/logo_barra_lateral.png}" width="100%" />
+					</div>
+				</li>
+				<li class="xn-title">Navegación</li>
+				<th:block sec:authorize="isAuthenticated()">
+					<li>
+						<a th:href="@{/inicio}">
+							<span class="fas fa-hospital"></span> Inicio
+						</a>
+					</li>
+					<li sec:authorize="hasPermission('1','ALL')" class="xn-openable">
+						<a>
+							<span class="fas fa-upload"></span>
+							<span class="xn-text"> Cargas Atención</span>
+						</a>
+						<ul>
+							<li>
+								<a th:href="@{/carga/alumno}">
+									<span class="fas fa-user"></span>
+									<span class="xn-text">Carga de Alumnos</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+	
+					<li sec:authorize="hasPermission('1','ALL') or hasPermission('2','ALL') or hasPermission('3','ALL') or hasPermission('4','ALL')"
+						class="xn-openable">
+						<a>
+							<span class="fas fa-bell"></span>
+							<span class="xn-text">Atenciones</span>
+						</a>
+						<ul>
+							<li sec:authorize="hasPermission('1','ALL') or hasPermission('2','ALL')" class="xn-openable">
+								<a>
+									<span class="fas fa-bell"></span>
+									<span>Laboratorio</span>
+								</a>
+								<ul>
+									<li sec:authorize="hasPermission('1','ALL') or hasPermission('2','ALL')">
+										<a th:href="@{/consulta/atencion/laboratorio}">
+											<span class="fas fa-calendar-check"></span>
+											<span>Registro de Número</span>
+										</a>
+									</li>
+									<li sec:authorize="hasPermission('1','ALL') or hasPermission('2','ALL')">
+										<a th:href="@{/reporte/atencion/diaria/registrados/laboratorio}">
+											<span class="fas fa-search"></span>
+											<span>Consulta</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li sec:authorize="hasPermission('1','ALL') or hasPermission('3','ALL')" class="xn-openable">
+								<a>
+									<span class="fa fa-bell"></span>
+									<span>Radiología</span>
+								</a>
+								<ul>
+									<li sec:authorize="hasPermission('1','ALL') or hasPermission('3','ALL')">
+										<a th:href="@{/consulta/atencion/radiologia}">
+											<span class="fa fa-calendar-check"></span>
+											<span>Registro de Número</span>
+										</a>
+									</li>
+									<li sec:authorize="hasPermission('1','ALL') or hasPermission('3','ALL')">
+										<a th:href="@{/reporte/atencion/diaria/registrados/radiologia}">
+											<span class="fa fa-search"></span>
+											<span>Consulta</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					
+					<li class="hidden">
+						<a th:href="@{/digitador/examenMedico}">
+							<span class="fa fa-hand-paper-o">
+							</span><span>Digitador</span>
+						</a>
+					</li>
+					<li sec:authorize="hasPermission('1','ALL') or hasPermission('2','ALL')" class="xn-openable">
+						<a>
+							<span class="fa fa-flask"></span>
+							<span class="xn-text">Laboratorio</span>
+						</a>
+						<ul>
+							<li>
+								<a th:href="@{/examenmedico/laboratorio/resultado}">
+									<span class="fa fa-calendar-check"></span>
+									<span>Registro</span>
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/consulta/administrativa/laboratorio}">
+									<span class="fa fa-search"></span>
+									<span>Consultas</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li sec:authorize="hasPermission('1','ALL') or hasPermission('3','ALL')" class="xn-openable">
+						<a>
+							<span class="fa fa-x-ray"></span> 
+							<span class="xn-text">Radiología</span>
+						</a>
+						<ul>
+							<li>
+								<a th:href="@{/examenmedico/radiologico/resultado}">
+									<span class="fa fa-calendar-check"></span>
+									<span>Registro</span>
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/consulta/administrativa/radiologico}">
+									<span class="fa fa-search"></span>
+									<span>Consultas</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li sec:authorize="hasPermission('1','ALL') or hasPermission('4','ALL')" class="xn-openable">
+						<a>
+							<span class="fa fa-brain"></span> 
+							<span class="xn-text">Psicología</span>
+						</a>
+						<ul>
+							<li>
+								<a th:href="@{/consulta/atencion/psicologia}">
+									<span class="fa fa-calendar-check"></span>
+									<span>Registro</span>
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/consulta/administrativa/psicologia}">
+									<span class="fa fa-search"></span>
+									<span>Consultas</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					
+					<li sec:authorize="hasPermission('1','ALL') or hasPermission('6','ALL')" class="xn-openable">
+						<a>
+							<span class="fa fa-stethoscope"></span> 
+							<span class="xn-text">Triaje</span>
+						</a>
+						<ul>
+							<li>
+								<a th:href="@{/consulta/atencion/triaje}">
+									<span class="fa fa-calendar-check"></span>
+									<span>Registro</span>
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/consulta/administrativa/triaje}">
+									<span class="fa fa-search"></span>
+									<span>Consultas</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					
+					<li sec:authorize="hasPermission('1','ALL') or hasPermission('5','ALL')" class="xn-openable">
+						<a>
+							<span class="fa fa-tooth"></span> 
+							<span class="xn-text">Odontologia</span>
+						</a>
+						<ul>
+							<li>
+								<a th:href="@{/consulta/atencion/odontologia}">
+									<span class="fa fa-calendar-check"></span>
+									<span>Registro</span>
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/consulta/administrativa/odontologia}">
+									<span class="fa fa-search"></span>
+									<span>Consultas</span>
+								</a>
+							</li>
+						</ul>
+					</li>				
+					<li sec:authorize="hasPermission('1','ALL') or hasPermission('7','ALL')" class="xn-openable">
+						<a>
+							<span class="fa fa-briefcase-medical"></span> 
+							<span class="xn-text">Medicina General</span>
+						</a>
+						<ul>
+							<li>
+								<a th:href="@{/consulta/atencion/medicinaGeneral}">
+									<span class="fa fa-calendar-check"></span>
+									<span>Registro</span>
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/consulta/administrativa/medicinaGeneral}">
+									<span class="fa fa-search"></span>
+									<span>Consultas</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li sec:authorize="hasPermission('1','ALL')" class="xn-openable">
+						<a>
+							<span class="fa fa-wrench"></span> 
+							<span class="xn-text">Proceso Automático</span>
+						</a>
+						<ul>
+							<li>
+								<a th:href="@{/mantenimiento/procesoAutomatico}">
+									<span class="fa fa-wrench"></span> Procesos
+								</a>
+							</li>
+						</ul>
+					</li>
+	
+					<li sec:authorize="hasPermission('1','ALL') or hasPermission('2','ALL') or hasPermission('3','ALL') or hasPermission('4','ALL')" 
+						class="xn-openable">
+						<a>
+							<span class="fa fa-file-excel"></span> 
+							<span class="xn-text">Reportes</span>
+						</a>
+						<ul>
+							<li sec:authorize="hasPermission('1','ALL') or hasPermission('2','ALL') or hasPermission('3','ALL') or 
+								hasPermission('4','ALL')"  class="xn-openable">
+								<a>
+									<span class="fa fa-file-excel"></span>
+									<span>Atenciones Diarias</span>
+								</a>
+								<ul>
+									<li sec:authorize="hasPermission('1','ALL')">
+										<a th:href="@{/reporte/atencion/diaria}">
+											<span class="fa fa-file-excel"></span>
+											<span>General</span>
+										</a>
+									</li>
+									<li sec:authorize="hasPermission('1','ALL') or hasPermission('2','ALL')">
+										<a th:href="@{/reporte/atencion/diaria/laboratorio}">
+											<span class="fa fa-file-excel"></span>
+											<span>Laboratorio</span>
+										</a>
+									</li>
+									<li sec:authorize="hasPermission('1','ALL') or hasPermission('3','ALL')">
+										<a th:href="@{/reporte/atencion/diaria/radiologia}">
+											<span class="fa fa-file-excel"></span>
+											<span>Radiología</span>
+										</a>
+									</li>
+									<li sec:authorize="hasPermission('1','ALL') or hasPermission('4','ALL')">
+										<a th:href="@{/reporte/atencion/diaria/psicologia}">
+											<span class="fa fa-file-excel"></span>
+											<span>Psicología</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li sec:authorize="hasPermission('1','ALL')" class="xn-openable">
+								<a>
+									<span class="fa fa-notes-medical"></span> 
+									<span class="xn-text">Examen Médico</span>
+								</a>
+								<ul>
+									<li>
+										<a th:href="@{/reporte/detalle/resultado/examenMedico/regular}">
+											<span class="fa fa-file-word"></span>
+											<span>Regulares</span>
+										</a>
+									</li>
+									<li>
+										<a th:href="@{/reporte/detalle/resultado/examenMedico/ingresante}">
+											<span class="fa fa-file-word"></span>
+											<span>Ingresantes</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li sec:authorize="hasPermission('1','ALL')" class="xn-openable"><a>
+							<span class="fa fa-wrench"></span>
+							<span class="xn-text">Mantenimientos</span>
+						</a>
+						<ul>
+							<li>
+								<a th:href="@{/mantenimiento/alumno}">
+									<span class="fa fa-wrench"></span> Alumno
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/mantenimiento/campania}">
+									<span class="fa fa-wrench"></span> Campaña
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/mantenimiento/facultad}">
+									<span class="fa fa-wrench"></span> Facultad
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/mantenimiento/escuela}">
+									<span class="fa fa-wrench"></span> Escuela
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/mantenimiento/especialidad}">
+									<span class="fa fa-wrench"></span> Especialidad
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/mantenimiento/persona}">
+									<span class="fa fa-wrench"></span> Persona
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/mantenimiento/medico}">
+									<span class="fa fa-wrench"></span> Personal Médico
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/mantenimiento/multitabcab}">
+									<span class="fa fa-wrench"></span> Tabla de Tablas
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/mantenimiento/parametroGeneral}">
+									<span class="fa fa-wrench"></span> Paramétro General
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li sec:authorize="hasPermission('1','ALL')" class="xn-openable">
+						<a>
+							<span class="fa fa-unlock-alt"></span> 
+							<span class="xn-text">Seguridad</span>
+						</a>
+						<ul>
+							<li>
+								<a th:href="@{/seguridad/usuario}">
+									<span class="fa fa-users"></span>
+									<span>Usuarios</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</th:block>
+			</ul>
+		</div>
+		-->
+		<div class="page-content-wrap display1">
+			<div class="container-fluid">
+			    <div class="row min-vh-100 flex-column flex-md-row">
+			        <aside class="aside_ p-0 flex-shrink-1">
+			            <nav class="navbar2 display2 navbar-expand navbar-dark flex-md-column flex-row align-items-start py-2">
+			                <div class="collapse navbar-collapse ">
+			                    <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between" style="text-align: center;">
+			                        <li class="nav-item">			                            
+		                            	<button class="menu-button text-nowrap" type="button" data-toggle="modal" data-target="#my-modal-menu">
+											<span aria-hidden="true"></span>
+										</button>
+			                        </li>
+			                        <li class="nav-item">
+			                            <a class="" href="#">
+			                            	<i class="fa fa-book fa-fw"></i> 
+		                            	</a>
+			                        </li>
+			                        <li class="nav-item">
+			                        	<a href="#">	
+			                        		<i class="fa fa-arrows" aria-hidden="true"></i>
+		                        		</a>
+	                        		</li>
+									<li class="nav-item">
+										<a href="#">
+											<i class="fa fa-btc" aria-hidden="true"></i>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#">
+											<i class="fa fa-globe" aria-hidden="true"></i>
+										</a>
+									</li>
+			                    </ul>
+			                </div>
+			            </nav>
+			        </aside>
+			        <main class="col bg-faded content_ flex-grow-1">
+			            <div layout:fragment="content"></div> 
+			        </main>
+			    </div>
+			</div>
+		</div>
+		<button type="button" class="mp-close-hide">
+			<span style="font-size: 36px; line-height: 30px;">
+				<i class="fas fa-times"></i>			
+			</span>
+		</button>
+		<!-- modal menu principal  -->
+		<div id="my-modal-menu" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="backdrop-filter: blur(5px);">       			  
+	        <div class="modal-dialog modal-dialog-centered justify-content-center modal-xl" role="document">           
+	            <div class="modal-content border-0 mx-3">
+					<div class="pt-tablecell page-home relative">
+				    	<div class="container">
+				      		<div class="row hex">
+				        		<div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+				          			<div class="hexagon-menu clear">
+				            			<div class="hexagon-item">
+							              	<div class="hex-item">
+												<div></div>
+												<div></div>
+												<div></div>
+							              	</div>
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<a th:href="@{/carga/alumno}" class="hex-content">
+								                <span class="hex-content-inner">
+								                  	<span class="icon">
+								                    	<i class="fa fa-id-badge"></i>
+								                  	</span>
+								                  	<span class="title">Perfil</span>
+								                </span>
+								                <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" 
+								                	xmlns="http://www.w3.org/2000/svg">
+								                	<path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path>
+							                	</svg>
+							              	</a>
+			            				</div>
+			            				<div class="hexagon-item">
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<a href="https://www.youtube.com/watch?v=j0_gIAHkaj4&t=9s" target="_blank" class="hex-content">
+								                <span class="hex-content-inner">
+								                  	<span class="icon">
+								                    	<i class="far fa-edit"></i>
+								                  	</span>
+								                  	<span class="title">Matrícula</span>
+								                </span>
+								                <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" 
+								                	xmlns="http://www.w3.org/2000/svg">
+								                	<path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path>
+							                	</svg>
+							              	</a>
+							            </div>
+							            <div class="hexagon-item">
+						              		<div class="hex-item">
+												<div></div>
+												<div></div>
+												<div></div>
+							              	</div>
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<a href="https://www.youtube.com/watch?v=j0_gIAHkaj4&t=9s" target="_blank" class="hex-content">
+								                <span class="hex-content-inner">
+								                  	<span class="icon">
+								                    	<i class="fa fa-file-alt"></i>
+								                  	</span>
+								                  	<span class="title">Reportes</span>
+								                </span>
+								                <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" 
+								                	xmlns="http://www.w3.org/2000/svg">
+								                	<path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path>
+							                	</svg>
+							              	</a>
+							            </div>
+							            <div class="hexagon-item">
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<a href="https://www.youtube.com/watch?v=j0_gIAHkaj4&t=9s" target="_blank" class="hex-content">
+								                <span class="hex-content-inner">
+								                  	<span class="icon">
+								                    	<i class="fa fa-calendar-check"></i>
+								                  	</span>
+								                  	<span class="title">Asistencia</span>
+								                </span>
+								                <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" 
+								                	xmlns="http://www.w3.org/2000/svg">
+								                	<path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path>
+							                	</svg>
+							              	</a>    
+							            </div>							            
+							            <div class="hexagon-item">
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<a href="http://cakecounter.com" target="_blank" class="hex-content">
+								                <span class="hex-content-inner">
+								                  	<span class="icon">
+								                    	<i class="fas fa-chalkboard-teacher"></i>
+								                  	</span>
+								                  	<span class="title">Tutoría</span>
+								                </span>
+							                	<svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" 
+							                		xmlns="http://www.w3.org/2000/svg">
+							                		<path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path>
+						                		</svg>
+							              	</a>
+							            </div>
+							            <div class="hexagon-item">
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<a href="https://www.youtube.com/watch?v=j0_gIAHkaj4&t=9s" target="_blank" class="hex-content">
+								                <span class="hex-content-inner">
+								                  	<span class="icon">
+								                    	<i class="fa fa-book-open"></i>
+								                  	</span>
+								                  	<span class="title">Plan de Estudio</span>
+								                </span>
+							                	<svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" 
+							                		xmlns="http://www.w3.org/2000/svg">
+							                		<path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path>
+						                		</svg>
+							              	</a>
+							            </div>
+							            <div class="hexagon-item">
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<div class="hex-item">
+								                <div></div>
+								                <div></div>
+								                <div></div>
+							              	</div>
+							              	<a href="https://www.youtube.com/watch?v=j0_gIAHkaj4&t=9s" target="_blank" class="hex-content">
+							                	<span class="hex-content-inner">
+							                  		<span class="icon">
+								                    	<i class="fa fa-book"></i>
+								                  	</span>
+							                  		<span class="title">Manuales</span>
+							                	</span>
+							                	<svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" 
+							                		xmlns="http://www.w3.org/2000/svg">
+							                		<path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path>
+						                		</svg>
+							              	</a>
+							            </div>
+				          			</div>
+				        		</div>
+				      		</div>
+				    	</div>
+				  	</div>
+	            </div>	
+	        </div>
+	    </div>
+	</body>
+</html>

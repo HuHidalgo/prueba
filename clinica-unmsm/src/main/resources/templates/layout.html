@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+		<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+		<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"></meta>
+		<meta name="root" th:content="@{/}" />
+		<title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Clinica Universitaria</title>
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.css}" />
+		<link rel="stylesheet" th:href="@{/css/pagina/menu-full-page.css}" />
+		<link rel="stylesheet" th:href="@{/css/feather.css}" />
+		<link rel="icon" th:href="@{/image/icono_logo.ico}" type="image/x-icon" />
+		<!-- <th:block layout:fragment="style"></th:block> -->
+	</head>
+	<body>
+		<div class="page-container">
+			<div class="page">
+				<div th:replace="template/fragments/header"></div>
+				<div th:replace="template/fragments/sidebar"></div>				
+		    </div>
+		</div>
+	
+		<script type="text/javascript" th:src="@{/js/jquery/jquery-3.2.1.min.js}"></script>
+		<script src="https://kit.fontawesome.com/29ddac97ab.js" crossorigin="anonymous"></script>
+		<!--<script type="text/javascript" th:src="@{/js/fontawesome/all.js}"></script>-->
+		<script type="text/javascript" th:src="@{/js/bootstrap/popper.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery/jquery.mCustomScrollbar.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery/jquery.slimscroll.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jolie/settings.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jolie/plugins.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jolie/actions.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery/jquery.bestupper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/util/util.js}"></script>
+		<script type="text/javascript" th:src="@{/js/pagina/layout.js}"></script>
+		<script type="text/javascript" th:src="@{/js/pagina/header/pcoded.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/pagina/header/vertical-layout.min.js}"></script>
+		<th:block layout:fragment="script"></th:block>
+	</body>
+</html>

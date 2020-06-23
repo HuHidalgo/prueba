@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="es" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+
+	</head>
+	<body>
+		<!-- 
+		<ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+			<li class="xn-icon-button">
+				<a href="#" class="x-navigation-minimize">
+					<span class="fa fa-outdent"></span>
+				</a>
+			</li>
+			<li>
+				<a class="navbar-brand" style="font-size: 20px; color: black;">
+					<span>CLINICA UNMSM</span>
+				</a>
+			</li>
+			<li class="pull-right">
+				<a class="dropdown-toggle" data-toggle="dropdown">
+				<i class="fa fa-user"></i> 
+					<span th:text="|Usuario : ${#httpSession.getAttribute('nombreUsuario')}|" style="color: black;"></span>
+					<span class=" fa fa-angle-down"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a th:href="@{/logout}">
+							<i class="fa fa-sign-out-alt"></i> Salir
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		-->
+		<div id="pcoded" class="pcoded">
+		    <div class="pcoded-overlay-box"></div>
+		    <div class="pcoded-container navbar-wrapper">
+		        <nav class="navbar header-navbar pcoded-header">
+		            <div class="navbar-wrapper">
+		                <div class="navbar-logo text-center">
+		                    <img th:src="@{/image/logo_sum.png}" style="margin: auto;" class="white-logo" />
+		                    <a class="mobile-options waves-effect waves-light">
+		                        <i class="feather icon-more-horizontal"></i>
+		                    </a>
+		                </div>
+		                <div class="navbar-container container-fluid">
+		                    <ul class="nav-left">
+		                    	<!--  
+		                        <li class="header-search">
+		                            <div class="main-search morphsearch-search">
+		                                <div class="input-group">
+		                                    <span class="input-group-prepend search-close">
+		                                        <i class="feather icon-x input-group-text"></i>
+		                                    </span>
+		                                    <input type="text" class="form-control" placeholder="Enter Keyword">
+		                                    <span class="input-group-append search-btn">
+		                                        <i class="feather icon-search input-group-text"></i>
+		                                    </span>
+		                                </div>
+		                            </div>
+		                        </li>
+		                        -->
+		                        
+		                    </ul>
+		                    <ul class="nav-right">
+		                        <li class="header-notification">
+		                            <div class="dropdown-primary dropdown">
+		                                <div class="dropdown-toggle" data-toggle="dropdown">
+		                                    <i class="feather icon-bell"></i>
+		                                    <span class="badge bg-c-red">5</span>
+		                                </div>
+		                                <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+		                                    <li>
+		                                        <h6>Notifications</h6>
+		                                    </li>
+		                                    <li>
+		                                        <div class="media">
+		                                            <img class="img-radius" src="https://img.icons8.com/clouds/100/000000/user.png" alt="Generic placeholder image">
+		                                            <div class="media-body">
+		                                                <h5 class="notification-user">Samba Holo</h5>
+		                                                <p class="notification-msg">Samba changed the user settings</p>
+		                                                <span class="notification-time">30 minutes ago</span>
+		                                            </div>
+		                                        </div>
+		                                    </li>
+		                                    <li>
+		                                        <div class="media">
+		                                            <img class="img-radius" src="https://img.icons8.com/color/48/000000/edit-profile-skin-type-7.png" alt="Generic placeholder image">
+		                                            <div class="media-body">
+		                                                <h5 class="notification-user">William alonso</h5>
+		                                                <p class="notification-msg">William updated the email address.</p>
+		                                                <span class="notification-time">35 minutes ago</span>
+		                                            </div>
+		                                        </div>
+		                                    </li>
+		                                    <li>
+		                                        <div class="media">
+		                                            <img class="img-radius" src="https://img.icons8.com/doodle/48/000000/user-female-red-hair.png" alt="Generic placeholder image">
+		                                            <div class="media-body">
+		                                                <h5 class="notification-user">Sara Din</h5>
+		                                                <p class="notification-msg">Sara updated mobile number.</p>
+		                                                <span class="notification-time">39 minutes ago</span>
+		                                            </div>
+		                                        </div>
+		                                    </li>
+		                                </ul>
+		                            </div>
+		                        </li>
+		                        <li class="user-profile header-notification">
+		                            <div class="dropdown-primary dropdown">
+		                                <div class="dropdown-toggle" data-toggle="dropdown">
+		                                    <img src="https://img.icons8.com/color/96/000000/user.png" class="img-radius" alt="User-Profile-Image">
+		                                    <span th:text="|${#httpSession.getAttribute('nombreUsuario')}|" style="color: black;"></span>
+		                                    <i class="feather icon-chevron-down"></i>
+		                                </div>
+		                                <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+		                                    <!--  
+		                                    <li>
+		                                        <a href="#!">
+		                                            <i class="feather icon-settings"></i> Settings
+		                                        </a>
+		                                    </li>
+		                                    -->
+		                                    <li>
+		                                        <a href="#">
+		                                            <i class="feather icon-user"></i> Perfil
+		                                        </a>
+		                                    </li>
+		                                    <!--
+		                                    <li>
+		                                        <a href="polygon/admindek/default/email-inbox.html">
+		                                            <i class="feather icon-mail"></i> My Messages
+		                                        </a>
+		                                    </li>
+		                                    -->
+		                                    <li>
+		                                        <a th:href="@{/logout}">
+		                                            <i class="feather icon-log-out"></i> Salir
+		                                        </a>
+		                                    </li>
+		                                </ul>
+		                            </div>
+		                        </li>
+		                    </ul>
+		                </div>
+		            </div>
+		        </nav>
+		    </div>
+		</div>
+	</body>
+</html>

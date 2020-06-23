@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	layout:decorate="layout">
+<head>
+<title>Mant. de Alumno</title>
+</head>
+<th:block layout:fragment="style">
+	<link th:href="@{/css/dataTables.bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/responsive.bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/popupwindow.css}" rel="stylesheet" />
+	<link th:href="@{/css/jquery-confirm.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/select2.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/select2-bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/daterangepicker.css}" rel="stylesheet" />
+	<link th:href="@{/css/bootstrap-datetimepicker.min.css}" rel="stylesheet" />
+</th:block>
+<body>
+	<th:block layout:fragment="content">
+		<div class="page-content-wrap">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Mantenimiento de Alumno</h3>
+							<ul class="panel-controls">
+								<li>
+									<button id="aniadirMantenimiento" class="btn btn-primary">
+										<i class="fa fa-plus"></i> 
+										<span>Añadir Alumno</span>
+									</button></li>
+							</ul>
+						</div>
+						<div class="panel-body">
+							<fieldset class="well">
+								<legend class="well-legend">Búsqueda</legend>
+								<form id="formBuscarAlumno" class="form-horizontal" role="form">
+									<div class="form-group">
+										<div class="group">
+											<label class="col-lg-1 control-label">Código de Alumno</label>
+											<div class="col-lg-2">
+												<input type="text" class="form-control numbersOnly filtro" maxlength="8" name="codigoAlumno">
+											</div>
+										</div>
+										<div class="group">
+											<label class="col-lg-2 control-label">Tipo de Documento</label>
+											<div class="col-lg-2">
+												<select id="tiposDocumento2" class="form-control select2 filtro" name="idTipoDocumento">
+													<option value="-1" selected="selected">Seleccione un Tipo de Documento</option>
+													<option th:each="tipoDocumento : ${tiposDocumento2}" th:value="${tipoDocumento.idItem}"
+														th:text="|${tipoDocumento.idItem} - ${tipoDocumento.abreviatura}|"></option>
+												</select>
+											</div>
+										</div>
+										<div class="group">
+											<label class="col-lg-2 control-label">Número de Documento</label>
+											<div class="col-lg-2">
+												<input type="text" class="form-control numbersOnly filtro" maxlength="12" name="numeroDocumento">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-lg-12 text-center">
+											<button id="buscar" type="button" class="btn btn-primary">
+												<i class="fa fa-search"></i> Buscar
+											</button>
+										</div>
+									</div>
+								</form>
+							</fieldset>
+							<table id="tablaMantenimiento" class="table table-bordered table-condensed nowrap display table-hover">
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<th:block th:replace="~{template/fragments/mantenimiento/modalMantenimiento :: modalMantenimiento(tipo=alumno)}?:~{}">
+		</th:block>
+	</th:block>
+
+	<th:block layout:fragment="script">
+		<script th:src="@{/js/datatables/jquery.dataTables.min.js}"></script>
+		<script th:src="@{/js/datatables/dataTables.bootstrap.min.js}"></script>
+		<script th:src="@{/js/datatables/dataTables.responsive.min.js}"></script>
+		<script th:src="@{/js/datatables/dataTables.show.rows.js}"></script>
+		<script th:src="@{/js/bootstrap/bootstrap-notify.min.js}"></script>
+		<script th:src="@{/js/jquery/popupwindow.min.js}"></script>
+		<script th:src="@{/js/jquery/jquery.serializejson.min.js}"></script>
+		<script th:src="@{/js/jquery/jquery.validate.min.js}"></script>
+		<script th:src="@{/js/jquery/additional-methods.min.js}"></script>
+		<script th:src="@{/js/jquery/jquery-confirm.min.js}"></script>
+		<script th:src="@{/js/jquery/jquery.animate.min.js}"></script>
+		<script th:src="@{/js/jquery/select2.full.min.js}"></script>
+		<script th:src="@{/js/jquery/moment.min.js}"></script>
+		<script th:src="@{/js/jquery/daterangepicker.js}"></script>
+		<script th:src="@{/js/jquery/bootstrap-datetimepicker.min.js}"></script>
+		<script th:src="@{/js/util/formularioUtil.js}"></script>
+		<script th:src="@{/js/pagina/mantenimiento/alumno/alumno.js}"></script>
+		<script th:src="@{/js/pagina/mantenimiento/alumno/alumnoFormulario.js}"></script>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unmsm.clinica.mapper.IAlumnoMapper">
+	
+	<select id="buscarAlumno" resultType="Alumno">
+		SELECT	alumno.vTipoDocumento						AS idTipoDocumento,
+                tipoDocumento.vDescripcionItem				AS descripcionTipoDocumento,
+                alumno.vNumeroDocumento						AS numeroDocumento,
+                alumno.vNombres 							AS nombres,
+                alumno.vApellidoPaterno						AS apellidoPaterno,
+                alumno.vApellidoMaterno						AS apellidoMaterno,
+                alumno.vIdSexo								AS idSexo,
+                sexo.vDescripcionItem						AS descripcionSexo,
+                alumno.vCodigoAlumno 						AS codigoAlumno,
+                alumno.vTipoAlumno							AS tipoAlumno,
+                tipoAlumno.vDescripcionItem					AS descripcionTipoAlumno,
+                alumno.vDireccion 							AS direccion,
+                alumno.dFechaNacimiento						AS fechaNacimiento,
+				(YEAR(CURDATE()) - YEAR(dFechaNacimiento))	AS edad,
+                alumno.nCodigoFacultad						AS codigoFacultad,
+                facultad.vDescripcion						AS descripcionFacultad,
+                escuela.nCodigoEscuela						AS codigoEscuela,
+                escuela.vDescripcion						AS descripcionEscuela,
+                alumno.vCorreoInstitucional					AS correoInstitucional,
+                alumno.vCorreoPersonal						AS correoPersonal,
+                alumno.vTelefonoFijo 						AS telefonoFijo,
+                alumno.vTelefonoMovil 						AS telefonoMovil,
+                alumno.vIdDiscapacidad						AS idDiscapacidad,
+                discapacidad.vDescripcionItem 				AS descripcionDiscapacidad
+		FROM	maealumno alumno 
+				INNER JOIN maemultitabladet tipoDocumento		ON	(alumno.vTipoDocumento = tipoDocumento.vIdItem 
+																	AND tipoDocumento.nIdTabla = 1)
+				INNER JOIN maemultitabladet sexo				ON	(alumno.vIdSexo = sexo.vIdItem 
+																	AND sexo.nIdTabla = 3)
+				INNER JOIN maemultitabladet tipoAlumno			ON	(alumno.vTipoAlumno = tipoAlumno.vIdItem 
+																	AND tipoAlumno.nIdTabla = 10)
+				INNER JOIN maefacultad facultad					ON	(alumno.nCodigoFacultad = facultad.nCodigoFacultad)
+                INNER JOIN maeescuela escuela					ON	(alumno.nCodigoEscuela = escuela.nCodigoEscuela
+																	AND alumno.nCodigoFacultad = escuela.nCodigoFacultad)
+                INNER JOIN maemultitabladet discapacidad		ON	(alumno.vIdDiscapacidad = discapacidad.vIdItem 
+																	AND discapacidad.nIdTabla = 2)
+		<where> 	
+				<if test="codigoAlumno != null and codigoAlumno != ''">
+					alumno.vCodigoAlumno = #{codigoAlumno}
+				</if>
+				<if test="idTipoDocumento != null and idTipoDocumento != '-1'">
+					AND alumno.vTipoDocumento = #{idTipoDocumento}
+				</if>
+				<if test="numeroDocumento != null and numeroDocumento != ''">
+					AND alumno.vNumeroDocumento = #{numeroDocumento}
+				</if>
+		</where>
+	</select>
+	
+</mapper>

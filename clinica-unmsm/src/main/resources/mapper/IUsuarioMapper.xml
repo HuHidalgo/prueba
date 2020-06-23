@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unmsm.clinica.mapper.IUsuarioMapper">
+	
+	<select id="buscarUsuario" resultType="Usuario">
+		SELECT	vIdUsuario		AS idUsuario,  
+				vContrasenia	AS contrasenia,
+				bActivo			AS activo,
+                nIdPerfil		AS idPerfil
+		FROM	secusuario
+		WHERE 	vIdUsuario = #{idUsuario}
+	</select>
+	
+</mapper>
